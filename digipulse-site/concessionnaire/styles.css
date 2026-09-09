@@ -1,0 +1,515 @@
+:root {
+  --ink: #12100e;
+  --panel: #1c1916;
+  --sand: #e8e0d4;
+  --muted: #b7aea2;
+  --amber: #d4a017;
+  --amber-hot: #f0b429;
+  --line: rgba(232, 224, 212, 0.14);
+  --font-display: "Archivo Black", "Arial Black", sans-serif;
+  --font-body: "Manrope", "Segoe UI", sans-serif;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  color: var(--sand);
+  font-family: var(--font-body);
+  background:
+    radial-gradient(ellipse 80% 50% at 70% 0%, rgba(212, 160, 23, 0.16), transparent 55%),
+    linear-gradient(180deg, #0e0c0a 0%, var(--ink) 40%, #0a0908 100%);
+}
+
+body.intro-active {
+  overflow: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* —— Intro split (temps allongé) —— */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.intro-panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background:
+    linear-gradient(160deg, #1a1612 0%, #0c0a08 100%);
+  transition: transform 1.8s cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+.intro-panel--left {
+  left: 0;
+  border-right: 1px solid rgba(212, 160, 23, 0.35);
+}
+
+.intro-panel--right {
+  right: 0;
+}
+
+.intro-mark {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  z-index: 2;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.intro-brand {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 8vw, 4.5rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.intro-sub {
+  margin: 0.4rem 0 0;
+  color: var(--amber-hot);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+.intro.is-splitting .intro-panel--left {
+  transform: translateX(-105%);
+}
+
+.intro.is-splitting .intro-panel--right {
+  transform: translateX(105%);
+}
+
+.intro.is-splitting .intro-mark {
+  opacity: 0;
+  transform: scale(0.96);
+}
+
+.intro.is-gone {
+  visibility: hidden;
+}
+
+/* —— Topbar —— */
+.topbar {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  height: 72px;
+  padding: 0 clamp(1rem, 4vw, 3.5rem);
+  background: rgba(14, 12, 10, 0.82);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.brand span {
+  color: var(--amber-hot);
+}
+
+.nav {
+  display: none;
+  gap: 1.6rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.nav a {
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.nav a:hover,
+.nav a:focus-visible {
+  color: var(--sand);
+}
+
+.menu-toggle {
+  display: grid;
+  gap: 6px;
+  width: 42px;
+  height: 42px;
+  place-content: center;
+  border: 1px solid var(--line);
+  background: transparent;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--sand);
+}
+
+body.menu-open .nav {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 72px;
+  left: 0;
+  right: 0;
+  padding: 1.25rem clamp(1rem, 4vw, 3.5rem) 1.5rem;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+}
+
+@media (min-width: 860px) {
+  .nav {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+}
+
+/* —— Hero —— */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  align-items: end;
+  padding: 0;
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.hero-media:hover img,
+.hero-media:focus-visible img {
+  transform: scale(1.02);
+}
+
+.hero-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(10, 9, 8, 0.88) 0%, rgba(10, 9, 8, 0.45) 55%, rgba(10, 9, 8, 0.2) 100%),
+    linear-gradient(0deg, rgba(10, 9, 8, 0.9) 0%, transparent 45%);
+  pointer-events: none;
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 36rem;
+  padding: clamp(5.5rem, 14vh, 8rem) clamp(1rem, 4vw, 3.5rem) clamp(3rem, 8vh, 5rem);
+}
+
+.eyebrow {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--amber-hot);
+}
+
+.hero h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 5.5vw, 3.1rem);
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.lede {
+  margin: 1rem 0 1.6rem;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  max-width: 32rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.25rem;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  font-weight: 800;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--amber);
+  color: #1a1408;
+}
+
+.btn-primary:hover {
+  background: var(--amber-hot);
+}
+
+.btn-ghost {
+  border-color: var(--line);
+  background: transparent;
+  color: var(--sand);
+}
+
+/* —— Sections —— */
+.catalogue,
+.finance,
+.contact {
+  padding: clamp(3.5rem, 8vh, 5.5rem) clamp(1rem, 4vw, 3.5rem);
+}
+
+.section-head {
+  max-width: 36rem;
+  margin-bottom: 2rem;
+}
+
+.section-head h2 {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.section-head p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.car-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 720px) {
+  .car-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.car-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.car-hit {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+
+.car-hit img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+.car-hit:hover img,
+.car-hit:focus-visible img {
+  transform: scale(1.04);
+}
+
+.car-meta {
+  padding: 1rem 1.1rem 1.25rem;
+}
+
+.car-meta h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.15rem;
+}
+
+.car-meta p {
+  margin: 0 0 0.65rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.price {
+  color: var(--amber-hot);
+  font-weight: 800;
+}
+
+.finance {
+  background: linear-gradient(180deg, transparent, rgba(212, 160, 23, 0.06));
+}
+
+.finance-copy {
+  max-width: 34rem;
+}
+
+.finance-copy p {
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0 0 1.25rem;
+}
+
+.contact-form {
+  display: grid;
+  gap: 0.9rem;
+  max-width: 28rem;
+}
+
+.contact-form label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--panel);
+  color: var(--sand);
+  font: inherit;
+}
+
+.footer {
+  padding: 1.5rem clamp(1rem, 4vw, 3.5rem) 2.5rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* —— Dialog fiche voiture —— */
+.car-dialog {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0;
+  max-width: min(560px, calc(100vw - 2rem));
+  background: var(--panel);
+  color: var(--sand);
+}
+
+.car-dialog::backdrop {
+  background: rgba(6, 5, 4, 0.72);
+}
+
+.car-dialog-inner {
+  margin: 0;
+  position: relative;
+}
+
+.dialog-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.6rem;
+  z-index: 2;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.car-dialog img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.dialog-body {
+  padding: 1.15rem 1.25rem 1.4rem;
+}
+
+.dialog-body h2 {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.dialog-body p {
+  margin: 0 0 0.5rem;
+  color: var(--muted);
+}
+
+.dialog-body .btn {
+  margin-top: 0.75rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-panel,
+  .intro-mark,
+  .car-hit img,
+  .btn {
+    transition: none !important;
+  }
+}
