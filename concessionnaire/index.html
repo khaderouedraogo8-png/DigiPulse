@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pulse Auto — Concessionnaire DigiPulse</title>
+  <meta name="description" content="Concessionnaire automobile DigiPulse : catalogue véhicules, achat et accompagnement financement.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Intro: panels hold, then split before disappearing (timing allongé) -->
+  <div id="intro" class="intro" aria-hidden="true">
+    <div class="intro-panel intro-panel--left"></div>
+    <div class="intro-panel intro-panel--right"></div>
+    <div class="intro-mark">
+      <p class="intro-brand">Pulse Auto</p>
+      <p class="intro-sub">DigiPulse · Concessionnaire</p>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="#accueil">Pulse <span>Auto</span></a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#accueil">Accueil</a>
+      <!-- Un seul bouton catalogue (plus de doublon Catalogue / Véhicule) -->
+      <a href="#catalogue">Catalogue</a>
+      <a href="#financement">Achat &amp; financement</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="nav-cta" href="#catalogue">Accès au catalogue</a>
+    <button class="menu-toggle" type="button" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <main>
+    <section id="accueil" class="hero">
+      <div class="hero-media" aria-hidden="true">
+        <img src="assets/hero-car.jpg" alt="" width="1600" height="945">
+      </div>
+      <div class="hero-copy">
+        <p class="eyebrow">Pulse Auto</p>
+        <h1>Le véhicule qui vous correspond, sans détour.</h1>
+        <p class="lede">Parcourez le catalogue, ouvrez une fiche, et avancez vers l’achat avec un accompagnement clair.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#catalogue">Voir le catalogue</a>
+          <a class="btn btn-ghost" href="#contact">Nous écrire</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="catalogue" class="catalogue">
+      <header class="section-head">
+        <h2>Catalogue</h2>
+        <p>Sélectionnez un véhicule pour ouvrir sa fiche détaillée.</p>
+      </header>
+      <div class="car-grid" role="list">
+        <article class="car-card" role="listitem" tabindex="0" data-car="sport-suv"
+          data-name="Horizon SX"
+          data-price="18 900 000 FCFA"
+          data-specs="SUV · Automatique · Essence"
+          data-img="assets/car-1.jpg">
+          <button type="button" class="car-hit" aria-label="Ouvrir la fiche Horizon SX">
+            <img src="assets/car-1.jpg" alt="Horizon SX, SUV sombre">
+            <div class="car-meta">
+              <h3>Horizon SX</h3>
+              <p>SUV · Automatique</p>
+              <span class="price">18 900 000 FCFA</span>
+            </div>
+          </button>
+        </article>
+        <article class="car-card" role="listitem" tabindex="0" data-car="city-sedan"
+          data-name="Cité Line"
+          data-price="12 400 000 FCFA"
+          data-specs="Berline · Manuelle · Essence"
+          data-img="assets/car-2.jpg">
+          <button type="button" class="car-hit" aria-label="Ouvrir la fiche Cité Line">
+            <img src="assets/car-2.jpg" alt="Cité Line, berline rouge">
+            <div class="car-meta">
+              <h3>Cité Line</h3>
+              <p>Berline · Manuelle</p>
+              <span class="price">12 400 000 FCFA</span>
+            </div>
+          </button>
+        </article>
+        <article class="car-card" role="listitem" tabindex="0" data-car="touring"
+          data-name="Route Pro"
+          data-price="15 200 000 FCFA"
+          data-specs="Break · Automatique · Diesel"
+          data-img="assets/car-3.jpg">
+          <button type="button" class="car-hit" aria-label="Ouvrir la fiche Route Pro">
+            <img src="assets/car-3.jpg" alt="Route Pro, break gris">
+            <div class="car-meta">
+              <h3>Route Pro</h3>
+              <p>Break · Automatique</p>
+              <span class="price">15 200 000 FCFA</span>
+            </div>
+          </button>
+        </article>
+      </div>
+    </section>
+
+    <!-- Pas de grille / tableau de mensualité : accompagnement uniquement -->
+    <section id="financement" class="finance">
+      <header class="section-head">
+        <h2>Achat &amp; financement</h2>
+        <p>On vous oriente vers une solution adaptée — sans grille de mensualités affichée ici.</p>
+      </header>
+      <div class="finance-copy">
+        <p>Parlez-nous du véhicule choisi et de votre budget. Notre équipe prépare une proposition claire avec nos partenaires, puis vous la présente en rendez-vous.</p>
+        <a class="btn btn-primary" href="#contact">Demander un accompagnement</a>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <header class="section-head">
+        <h2>Contact</h2>
+        <p>Une question sur un modèle ou un projet d’achat ?</p>
+      </header>
+      <form class="contact-form" action="#" method="post">
+        <label>Nom<input name="nom" type="text" required autocomplete="name"></label>
+        <label>Téléphone<input name="tel" type="tel" required autocomplete="tel"></label>
+        <label>Message<textarea name="message" rows="4" required></textarea></label>
+        <button class="btn btn-primary" type="submit">Envoyer</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Pulse Auto · Réalisé par DigiPulse</p>
+  </footer>
+
+  <!-- Fiche véhicule (ouverte au clic sur la voiture) -->
+  <dialog id="car-dialog" class="car-dialog">
+    <form method="dialog" class="car-dialog-inner">
+      <button type="submit" class="dialog-close" aria-label="Fermer">×</button>
+      <img id="dialog-img" src="" alt="">
+      <div class="dialog-body">
+        <h2 id="dialog-name"></h2>
+        <p id="dialog-specs"></p>
+        <p class="price" id="dialog-price"></p>
+        <a class="btn btn-primary" href="#contact">Réserver un essai</a>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
